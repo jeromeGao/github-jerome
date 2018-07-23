@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>学生信息管理</title>
+    <style type="text/css">
+        table {
+            width: 500px;
+        }
+
+        th {
+            background-color: lightgray;
+        }
+
+        /*伪类样式*/
+        tr:hover {
+            background-color: yellow;
+        }
+    </style>
+    <script type="text/javascript">
+        //添加
+      function addRow() {
+          //1.将用户名和输入框的内容清空、
+          var noIn=document.getElementById("no");
+          var nameIn=document.getElementById("name");
+          //2.往table的tbody里面添加一个tr
+          //2.1 根据id找到tbody
+          var tbody=document.getElementById("data");
+          //2.2 创建一个tr标签
+          var tr=document.createElement("tr");
+          //tr标签中，应该有三个td
+          tr.innerHTML = "<td>"+noIn.value+"</td>\n" +"<td>"+nameIn.value+"</td>\n"+
+              "<td><a href=\"javascript:;\" onclick=\"deleteRow(this)\">删除</a></td>";
+
+          //清空这俩输入框内容
+          noIn.value="";
+          nameIn.value="";
+          //2.3 将tr添加到tbody中
+          tbody.appendChild(tr);
+      }
+      //删除
+        function deleteRow(obj) {
+          obj.parentNode.parentNode.remove();
+            
+        }
+    </script>
+</head>
+<body>
+<div>
+    <table border="1" cellspacing="0" cellpadding="3">
+        <tbody id="data">
+        <tr>
+
+            <th>学号</th>
+            <th>姓名</th>
+            <th>操作</th>
+        </tr>
+        <tr>
+            <td>00001</td>
+            <td>潘金莲</td>
+            <td>
+                <a href="javascript:;" onclick="deleteRow(this)">删除</a>
+            </td>
+        </tr>
+        <tr>
+            <td>00002</td>
+            <td>鲁智深</td>
+            <td>
+                <a href="javascript:;" onclick="deleteRow(this)">删除</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <br />
+    学号：<input type="text" id="no" value="" />
+    姓名：<input type="text" id="name" value="" />
+    <input type="button" id="addBtn" value="添加" onclick="addRow()"/>
+</div>
+</body>
+</html>
